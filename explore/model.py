@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
@@ -7,11 +9,17 @@ from sklearn.model_selection import train_test_split
 
 # --- 1. Load and Prepare Data ---
 try:
-    df = pd.read_csv("../data/loan-approval-dataset/loan_approval.csv")
+    csv_path = (
+        Path(__file__).parent.parent
+        / "data"
+        / "loan-approval-dataset"
+        / "loan_approval.csv"
+    )
+    df = pd.read_csv(csv_path)
     print("Data loaded successfully.")
 except FileNotFoundError:
     print("Error: 'loan_approval.csv' not found. Please check the file path.")
-    assert False, "File not found"
+    raise FileNotFoundError("File not found")
 
 # Clean column names (remove leading/trailing spaces)
 df.columns = df.columns.str.strip()
