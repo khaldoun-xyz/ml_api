@@ -18,11 +18,11 @@ app = FastAPI(
 class LoanFeatures(BaseModel):
     """Input features for loan approval prediction."""
 
-    income: float = Field(..., description="Annual income")
-    credit_score: int = Field(..., description="Credit score")
-    loan_amount: float = Field(..., description="Requested loan amount")
-    years_employed: float = Field(..., description="Years at current job")
-    points: float = Field(..., description="Applicant points score")
+    income: float = Field(..., gt=0, description="Annual income (>0)")
+    credit_score: int = Field(..., ge=250, le=900, description="Credit score (300-850)")
+    loan_amount: float = Field(..., gt=0, description="Requested loan amount (>0)")
+    years_employed: float = Field(..., ge=0, description="Years at current job (>=0)")
+    points: float = Field(..., ge=0, description="Applicant points score (>=0)")
 
 
 class PredictionResponse(BaseModel):
@@ -84,5 +84,5 @@ async def predict(features: LoanFeatures) -> PredictionResponse:
     except Exception as e:
         raise HTTPException(
             status_code=500,
-            detail=f"Prediction failed: {str(e)}",
+            detail=f"Prediction failed.",
         )
