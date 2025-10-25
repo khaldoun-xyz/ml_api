@@ -35,4 +35,4 @@ The dataset contains loan approval data.
 
 ### REST API
 
-- Start the server with `uvicorn app:app --reload`
+- Start the server with `uvicorn src.app:app --reload`
