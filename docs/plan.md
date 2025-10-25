@@ -28,3 +28,7 @@ The dataset contains loan approval data.
 
 - [Install pixi](https://pixi.sh/latest/installation/)
 - `pixi add python`, `pixi add jupyter lab`
+
+### Modelling
+
+- Run python scripts within the pixi shell. Run `pixi shell`.
