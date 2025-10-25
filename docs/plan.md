@@ -19,7 +19,12 @@ The dataset contains loan approval data.
 - Since the algorithm needs to be available as quickly as possible, I'll take
   as many reasonable shortcuts as I can.
 
-## EDA
+### Repo setup
+
+- only allow squash & merge on Github
+- add .pre-commit hooks
+
+### EDA
 
 - [Install pixi](https://pixi.sh/latest/installation/)
 - `pixi add python`, `pixi add jupyter lab`
