@@ -1,3 +1,4 @@
+import pickle
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -138,3 +139,11 @@ plt.title("Feature Importance")
 plt.xlabel("Importance Score")
 plt.ylabel("Features")
 plt.show()
+
+
+# --- 7. Save the trained model ---
+print("\n--- Saving Model ---")
+model_path = Path(__file__).parent.parent / "models" / "loan_model.pkl"
+with open(model_path, "wb") as f:
+    pickle.dump(model, f)
+print(f"Model saved to {model_path}")
