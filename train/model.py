@@ -1,6 +1,6 @@
-import pickle
 from pathlib import Path
 
+import joblib
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
@@ -143,7 +143,7 @@ plt.show()
 
 # --- 7. Save the trained model ---
 print("\n--- Saving Model ---")
-model_path = Path(__file__).parent.parent / "models" / "loan_model.pkl"
-with open(model_path, "wb") as f:
-    pickle.dump(model, f)
+model_path = Path(__file__).parent.parent / "models" / "loan_model.joblib"
+model_path.parent.mkdir(parents=True, exist_ok=True)
+joblib.dump(model, model_path)
 print(f"Model saved to {model_path}")

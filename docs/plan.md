@@ -32,3 +32,7 @@ The dataset contains loan approval data.
 ### Modelling
 
 - Run python scripts within the pixi shell. Run `pixi shell`.
+
+### REST API
+
+- Start the server with `uvicorn app:app --reload`

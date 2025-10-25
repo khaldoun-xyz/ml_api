@@ -2,9 +2,9 @@
 FastAPI webservice for the REST API.
 """
 
-import pickle
 from pathlib import Path
 
+import joblib
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
@@ -31,11 +31,10 @@ class PredictionResponse(BaseModel):
     approve: bool = Field(..., description="Loan approval prediction")
 
 
-MODEL_PATH = Path(__file__).parent.parent / "models" / "loan_model.pkl"
+MODEL_PATH = Path(__file__).parent.parent / "models" / "loan_model.joblib"
 
 try:
-    with open(MODEL_PATH, "rb") as f:
-        model = pickle.load(f)
+    model = joblib.load(MODEL_PATH)
 except FileNotFoundError:
     raise RuntimeError(
         f"Model file not found at {MODEL_PATH}. Please train the model first."
