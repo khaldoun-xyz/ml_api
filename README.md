@@ -34,4 +34,4 @@ to develop the loan application algorithm.
 
 ### Development flow
 
-![architecture flow](./docs/imgs/architecture.png)
+![architecture flow](./docs/imgs/25_10-architecture.png)
