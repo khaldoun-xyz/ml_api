@@ -22,4 +22,4 @@ The dataset contains loan approval data.
 ## EDA
 
 - [Install pixi](https://pixi.sh/latest/installation/)
-- `pixi add python`, `pixi add jupyter lab`, `pixi add pandas`
+- `pixi add python`, `pixi add jupyter lab`
