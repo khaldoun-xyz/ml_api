@@ -3,7 +3,6 @@
 .gitattributes
 .pre-commit-config.yaml
 .pixi
-pixi.lock
 README.md
 docs/
 data/

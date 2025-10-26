@@ -31,10 +31,22 @@ class PredictionResponse(BaseModel):
     approve: bool = Field(..., description="Loan approval prediction")
 
 
+class HealthResponse(BaseModel):
+    """Response model for health check."""
+
+    status: str = Field(..., description="Health status")
+    model_loaded: bool = Field(..., description="Whether the model is loaded")
+    version: str = Field(..., description="API version")
+
+
 MODEL_PATH = Path(__file__).parent.parent / "models" / "loan_model.joblib"
+
+model = None
+model_loaded = False
 
 try:
     model = joblib.load(MODEL_PATH)
+    model_loaded = True
 except FileNotFoundError:
     raise RuntimeError(
         f"Model file not found at {MODEL_PATH}. Please train the model first."
@@ -49,6 +61,20 @@ def root():
         "version": "1.0.0",
         "description": "API for predicting loan approval based on applicant information",
     }
+
+
+@app.get("/health", response_model=HealthResponse)
+def health():
+    """Health check endpoint for monitoring systems.
+
+    Returns:
+        HealthResponse containing health status and model information
+    """
+    return HealthResponse(
+        status="healthy" if model_loaded else "unhealthy",
+        model_loaded=model_loaded,
+        version="1.0.0",
+    )
 
 
 @app.post("/predict", response_model=PredictionResponse)
