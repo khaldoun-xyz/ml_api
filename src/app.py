@@ -5,6 +5,7 @@ FastAPI webservice for the REST API.
 from pathlib import Path
 
 import joblib
+import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
@@ -13,6 +14,14 @@ app = FastAPI(
     description="API for predicting loan approval based on applicant information",
     version="1.0.0",
 )
+
+FEATURE_NAMES = [
+    "income",
+    "credit_score",
+    "loan_amount",
+    "years_employed",
+    "points",
+]
 
 
 class LoanFeatures(BaseModel):
@@ -91,17 +100,9 @@ async def predict(features: LoanFeatures) -> PredictionResponse:
         HTTPException: If prediction fails
     """
     try:
-        feature_list = [
-            features.income,
-            features.credit_score,
-            features.loan_amount,
-            features.years_employed,
-            features.points,
-        ]
-
-        # Model expects features as a 2D array
-        prediction = model.predict([feature_list])[0]
-
+        input_data = [features.model_dump()]
+        input_df = pd.DataFrame(input_data, columns=FEATURE_NAMES)
+        prediction = model.predict(input_df)[0]
         # Convert numeric prediction (0/1) to boolean
         approve = bool(prediction)
 
