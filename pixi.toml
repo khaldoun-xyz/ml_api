@@ -10,8 +10,8 @@ default = []
 dev = ["default", "dev"]
 
 [tasks]
-build-docker = "docker build -t loan-approval-api ."
-run-docker = "docker run -p 8000:8000 loan-approval-api"
+docker-build = "docker build -t loan_api ."
+docker-run = "docker run --rm --name loan_api --net loan-net -p 8000:8000 loan_api"
 fastapi-prod = "uvicorn src.app:app --host 0.0.0.0 --port 8000"
 
 [dependencies]
