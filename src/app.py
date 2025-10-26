@@ -7,6 +7,7 @@ from pathlib import Path
 import joblib
 import pandas as pd
 from fastapi import FastAPI, HTTPException
+from prometheus_fastapi_instrumentator import Instrumentator
 from pydantic import BaseModel, Field
 
 app = FastAPI(
@@ -14,6 +15,9 @@ app = FastAPI(
     description="API for predicting loan approval based on applicant information",
     version="1.0.0",
 )
+
+# Initialize Prometheus instrumentation
+Instrumentator().instrument(app).expose(app)
 
 FEATURE_NAMES = [
     "income",

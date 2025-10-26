@@ -39,3 +39,7 @@ to develop the loan application algorithm.
 ### Screenshots
 
 ![fastapi](./docs/imgs/screenshot-api.png)
+
+### Helpful task commands
+
+See the `tasks` sections in the `pixi.toml` file for helpful task commands.
