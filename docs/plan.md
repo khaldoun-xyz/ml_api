@@ -38,3 +38,8 @@ The dataset contains loan approval data.
 - Start the server with `uvicorn src.app:app --reload`
 - Add Dockerfile
 - Add dev environment to avoid having jupyter lab in the Docker deployment
+
+### Grafana
+
+- add specific uid that you get when visiting `Connections` -> `Data sources`
+  -> your data source -> the uid in the url after /edit/

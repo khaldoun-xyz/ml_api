@@ -9,7 +9,13 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      test:
+        [
+          "CMD",
+          "/app/.pixi/envs/default/bin/python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8000/health').read()",
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -22,8 +28,9 @@ services:
       - "9090:9090"
     networks:
       - loan-net
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
-      # Add the :z flag to relabel the file for SELinux
       - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro,z
       - prometheus_data:/prometheus
     command:
@@ -32,11 +39,30 @@ services:
     depends_on:
       - loan_api
 
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    networks:
+      - loan-net
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro,z
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+
 networks:
   loan-net:
-    # This tells compose to use an existing network
-    # instead of creating a new one
     external: true
 
 volumes:
   prometheus_data:
+  grafana_data:

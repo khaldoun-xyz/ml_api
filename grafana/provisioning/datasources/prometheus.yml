@@ -1,0 +1,11 @@
+apiVersion: 1
+
+datasources:
+  - name: Prometheus # The name Grafana will show
+    type: prometheus
+    access: proxy # Use Grafana backend as proxy
+    url: http://prometheus:9090 # Address of Prometheus container
+    isDefault: true # Make this the default datasource
+    jsonData:
+      timeInterval: "15s" # Match Prometheus scrape interval
+    editable: false # Prevent users from editing in UI
