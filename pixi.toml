@@ -25,7 +25,6 @@ scikit-learn = ">=1.7.2,<2"
 pandas = ">=2.3.3,<3"
 
 [feature.dev.tasks]
-prometheus = "prometheus --config.file=prometheus.yml"
 fastapi = "uvicorn src.app:app --reload --host 0.0.0.0 --port 8000"
 train-model = "python train/model.py"
 
