@@ -36,3 +36,5 @@ The dataset contains loan approval data.
 ### REST API
 
 - Start the server with `uvicorn src.app:app --reload`
+- Add Dockerfile
+- Add dev environment to avoid having jupyter lab in the Docker deployment

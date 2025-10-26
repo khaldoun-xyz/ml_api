@@ -35,3 +35,7 @@ to develop the loan application algorithm.
 ### Development flow
 
 ![architecture flow](./docs/imgs/25_10-architecture.png)
+
+### Screenshots
+
+![fastapi](./docs/imgs/screenshot-api.png)
