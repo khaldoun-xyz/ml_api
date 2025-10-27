@@ -3,7 +3,6 @@
 !.pixi/config.toml
 .ipynb_checkpoints/
 data/
-models/
 __pycache__/
 mlruns/
 .coverage
