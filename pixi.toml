@@ -27,11 +27,13 @@ pandas = ">=2.3.3,<3"
 [feature.dev.tasks]
 fastapi = "uvicorn src.app:app --reload --host 0.0.0.0 --port 8000"
 train-model = "python train/model.py"
+mlflow-ui = "mlflow ui --host 0.0.0.0 --port 5000"
 
 [feature.dev.dependencies]
 jupyterlab = ">=4.4.10,<5"
 matplotlib = ">=3.10.7,<4"
 seaborn = ">=0.13.2,<0.14"
+mlflow = ">=2.22.0"
 
 [pypi-dependencies]
 prometheus-client = ">=0.23.1, <0.24"
