@@ -50,6 +50,8 @@ to develop the loan application algorithm.
 
 ![grafana](./docs/imgs/screenshot-grafana.png)
 
+![GitHub Actions](./docs/imgs/screenshot-gh_action.png)
+
 ### Helpful task commands
 
 See the `tasks` sections in the `pixi.toml` file for helpful task commands.
