@@ -44,6 +44,8 @@ to develop the loan application algorithm.
 
 ![loan_success](./docs/imgs/screenshot-loan-success.png)
 
+![mlflow](./docs/imgs/screenshot-mlflow.png)
+
 ![prometheus-metrics](./docs/imgs/screenshot-prometheus-metrics.png)
 
 ![grafana](./docs/imgs/screenshot-grafana.png)
