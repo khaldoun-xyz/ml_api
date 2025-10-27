@@ -7,8 +7,6 @@ import mlflow
 import mlflow.sklearn
 import pandas as pd
 import seaborn as sns
-
-# Import the infer_signature function
 from mlflow.models import infer_signature
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
@@ -76,12 +74,10 @@ y = df["loan_approved_numeric"]
 # and would require complex feature engineering (like target encoding).
 # Our EDA showed it wasn't a strong predictor anyway.
 if custom_features:
-    # Use custom features provided via command-line
     feature_list = [f.strip() for f in custom_features.split(",")]
     X = df[feature_list]
     print(f"Using custom features: {feature_list}")
 else:
-    # Use default features
     X = df.drop(columns=["loan_approved", "loan_approved_numeric", "name", "city"])
     print(
         "Using default features (all except: loan_approved, loan_approved_numeric, name, city)"
@@ -239,8 +235,6 @@ with mlflow.start_run(run_name=run_name) as run:
 # --- 9. Save the trained model (for local use) ---
 # We do this *after* the run is complete.
 # This .joblib file is what our `predict.py` script will use.
-# NOTE: This is now optional if you load from the registry,
-# but still useful for local testing.
 print("\n--- Saving Model Locally ---")
 model_path = Path(__file__).parent.parent / "models" / "loan_model.joblib"
 model_path.parent.mkdir(parents=True, exist_ok=True)
