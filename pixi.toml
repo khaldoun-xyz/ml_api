@@ -11,9 +11,9 @@ dev = ["default", "dev"]
 
 [tasks]
 docker-compose = "docker-compose up --build"
-docker-create-network = "docker network create loan-net"
 docker-run = "docker run --rm --name loan_api --net loan-net -p 8000:8000 loan_api"
 docker-build = "docker build -t loan_api ."
+docker-create-network = "docker network create loan-net"
 fastapi-prod = "uvicorn src.app:app --host 0.0.0.0 --port 8000"
 
 [dependencies]
