@@ -29,7 +29,7 @@ to develop the loan application algorithm.
 | :--- | :--- |
 | **Plan** | - well-reasoned product specification<br> - transparent repo structure |
 | **Developing the model** | - environment mgmt. with pixi<br>- EDA with Jupyter Notebook<br>- model tracking with MLFlow |
-| **Serving the model** | - web service & REST endpoint with FastAPI<br>- data validation with pydantic<br>- containerisation with docker<br>- creating a network between containers<br>- automated tests with pytest & Github Actions |
+| **Serving the model** | - web service & REST endpoint with FastAPI<br>- data validation with pydantic<br>- containerisation with docker<br>- creating a network between containers<br>- automated tests with pytest & GitHub Actions |
 | **Integrating the model** | - legacy IT system calls API<br>- monitoring with Prometheus & Grafana |
 
 ### Development flow
