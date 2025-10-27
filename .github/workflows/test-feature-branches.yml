@@ -37,10 +37,3 @@ jobs:
       - name: Generate coverage report
         run: pixi run -e dev test-cov
         continue-on-error: true
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: khaldoun-xyz/ml_api
-        continue-on-error: true
