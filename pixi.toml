@@ -1,4 +1,4 @@
-[project]
+[workspace]
 authors = ["s0288 <alex.gansmann@hey.com>"]
 channels = ["conda-forge"]
 name = "ml_api"
