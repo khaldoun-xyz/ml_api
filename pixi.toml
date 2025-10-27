@@ -10,11 +10,11 @@ default = []
 dev = ["default", "dev"]
 
 [tasks]
-docker-compose = "docker-compose up --build"
-docker-run = "docker run --rm --name loan_api --net loan-net -p 8000:8000 loan_api"
-docker-build = "docker build -t loan_api ."
-docker-create-network = "docker network create loan-net"
 fastapi-prod = "uvicorn src.app:app --host 0.0.0.0 --port 8000"
+docker-create-network = "docker network create loan-net"
+docker-build = "docker build -t loan_api ."
+docker-run = "docker run --rm --name loan_api --net loan-net -p 8000:8000 loan_api"
+docker-compose = "docker-compose up --build"
 
 [dependencies]
 python = ">=3.14.0,<3.15"
@@ -25,16 +25,23 @@ scikit-learn = ">=1.7.2,<2"
 pandas = ">=2.3.3,<3"
 
 [feature.dev.tasks]
-fastapi = "uvicorn src.app:app --reload --host 0.0.0.0 --port 8000"
 train-model = "python train/model.py"
+fastapi = "uvicorn src.app:app --reload --host 0.0.0.0 --port 8000"
 mlflow-ui = "mlflow ui --host 0.0.0.0 --port 5000"
+test = "pytest -v --tb=short"
+test-cov = "pytest -v --tb=short --cov=src --cov-report=html --cov-report=term"
+test-watch = "pytest-watch"
 
 [feature.dev.dependencies]
 jupyterlab = ">=4.4.10,<5"
 matplotlib = ">=3.10.7,<4"
 seaborn = ">=0.13.2,<0.14"
 mlflow = ">=2.22.0"
+pytest = ">=8.0.0,<9"
+pytest-asyncio = ">=0.24.0,<0.25"
+pytest-cov = ">=5.0.0,<6"
 
 [pypi-dependencies]
 prometheus-client = ">=0.23.1, <0.24"
 prometheus-fastapi-instrumentator = ">=7.1.0, <8"
+pytest-watch = ">=4.2.0"
