@@ -22,20 +22,20 @@ def parse_arguments():
         "--run-name",
         type=str,
         default="random-forest-baseline",
-        help="Name of the MLFlow run (default: random-forest-baseline)",
+        help="Name of the MLflow run (default: random-forest-baseline)",
     )
     parser.add_argument(
         "--features",
         type=str,
         default=None,
         help="Comma-separated list of features to use for training. "
-        "Available features: income, credit_score, loan_amount, years_exmployed, points"
+        "Available features: income, credit_score, loan_amount, years_employed, points"
         "If not provided, uses all available features.",
     )
     return parser.parse_args()
 
 
-# --- 0. MLFlow Setup ---
+# --- 0. MLflow Setup ---
 mlflow.set_experiment("loan-approval-model")
 
 # --- 1. Parse Arguments ---
@@ -102,7 +102,7 @@ print(f"Testing set shape: {X_test.shape}")
 print("\n--- Training Model ---")
 print(f"Training a RandomForestClassifier with run name: {run_name}...")
 
-# Start MLFlow run
+# Start MLflow run
 with mlflow.start_run(run_name=run_name) as run:
     mlflow.log_param("dataset_size", len(df))
     mlflow.log_param("training_set_size", len(X_train))
@@ -193,8 +193,8 @@ with mlflow.start_run(run_name=run_name) as run:
     plt.tight_layout()
     mlflow.log_figure(plt.gcf(), "feature_importance.png")
 
-    # --- 8. Log Model to MLFlow (with Signature) ---
-    print("\n--- Logging Model to MLFlow ---")
+    # --- 8. Log Model to MLflow (with Signature) ---
+    print("\n--- Logging Model to MLflow ---")
 
     signature = infer_signature(X_test, y_pred)
     input_example = X_test.head()
@@ -207,7 +207,7 @@ with mlflow.start_run(run_name=run_name) as run:
     )
 
     # --- 8b. Register the Model ---
-    print("\n--- Registering Model in MLFlow Registry ---")
+    print("\n--- Registering Model in MLflow Registry ---")
     model_uri = f"runs:/{run.info.run_id}/model"
 
     registered_model_name = "loan-approval-model"
@@ -226,10 +226,10 @@ with mlflow.start_run(run_name=run_name) as run:
         description=f"Model trained with run name: {run_name}",
     )
 
-    print("\n--- MLFlow Run Complete ---")
+    print("\n--- MLflow Run Complete ---")
     print(f"Run ID: {run.info.run_id}")
     print(f"Experiment: {run.info.experiment_id}")
-    # --- End of MLFlow Run ---
+    # --- End of MLflow Run ---
 
 
 # --- 9. Save the trained model (for local use) ---
